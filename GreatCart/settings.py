@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'category.apps.CategoryConfig',
     'accounts.apps.AccountsConfig',
     'store.apps.StoreConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +54,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links'
+                'category.context_processors.menu_links',
+                'store.context_processors.counter',
             ],
         },
     },
@@ -98,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -120,7 +122,27 @@ MEDIA_URL = '/images/'
 
 MEDIA_ROOT = BASE_DIR.joinpath('static/images')
 
+LOGIN_URL = '/login/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+ }
+
+# SMTP CONFIGURATION
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST_USER = 'nafizfuadrony01@gmail.com'  
+DEFAULT_FROM_EMAIL = 'nafizfuadeng58@gmail.com'
+EMAIL_HOST_PASSWORD = 'wyawoyrwoymnmvcx'  
+EMAIL_PORT = 587  
